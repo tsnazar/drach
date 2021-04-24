@@ -1,0 +1,63 @@
+<div class="side-padding bottom-padding">
+    {{#if message}}
+            <div class="alert {{messageClass}}" role="alert">
+                {{message}}
+            </div>
+    {{/if}}
+    <form style="width: 320px" action="" method="POST">
+        <div class="s">
+            <label for="title">Title</label>
+            <input name="title" type="text" id='titleInput'>
+        </div>
+
+        <div class="s">
+            <label for="type">Type</label>
+            <select name="type" id="typeInput">
+                <option value="---">---</option>
+                <option value="film">film</option>
+                <option value="poetry">poetry</option>
+            </select>
+        </div>
+
+        <div class="s">
+            <label for="poetryContent">Poetry Content</label>
+            <textarea name="poetryContent" type="text" id='poetryContentInput'></textarea>
+        </div>
+
+        <div class="s">
+            <label for="filmGenre">Film Genre</label>
+            <input name="filmGenre" type="text" id='filmGenreInput'>
+        </div>
+
+        <div class="s">
+            <label for="filmURL">Film Video</label>
+            <input name="filmURL" type="text" id='filmURLInput'>
+        </div>
+
+        <div class="s">
+            <label for="filmDescription">Film Summary</label>
+            <textarea name="filmDescription" type="text" id='filmDescriptionInput'></textarea>
+        </div>
+
+        <div class="s">
+            <label for="filmCritic1">Film Critic_1</label>
+            <textarea name="filmCritic1" type="text" id='filmCriticInput1'></textarea>
+            <label for="filmCriticAuthor1">Author of Critic_1</label>
+            <input name="filmCriticAuthor1" type="text" id='filmCriticAuthorInput1'></input>
+        </div>
+
+        <div class="s">
+            <label for="filmCritic2">Film Critic_2</label>
+            <textarea name="filmCritic2" type="text" id='filmCriticInput2'></textarea>
+            <label for="filmCriticAuthor2">Author of Critic_2</label>
+            <input name="filmCriticAuthor2" type="text" id='filmCriticAuthorInput2'></input>
+        </div>
+
+
+        <button style="padding: 16px;" type="submit">Add</button>
+    </form>
+</div>
+
+<script>
+    
+</script>

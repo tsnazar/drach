@@ -1,0 +1,42 @@
+<div id="artworks" class="bottom-padding">
+    <div class="breadcrumbs side-padding">
+        <a href="/">Головна</a>
+        <span>></span>
+        <a href="/artworks">Твори</a>
+    </div>
+    <div class="side-padding">
+        <div id="artworks_1">
+            <div class="">
+                <h1>Поезії</h1>
+                <ul>
+                    {{#each poetry_1}}
+                        <li  {{#unless this.poetryContent}}class='disabled'{{/unless}}><a href="/artworks/{{#if this.slug}}{{this.slug}}{{/if}}">{{this.title}}</a></li>
+                    {{/each}}
+                </ul>
+            </div>
+            <img src="/img/drach_promova-min.png" alt="">
+        </div>
+        <div id="artworks_2">
+            <div class="">
+                <h1>Поезії</h1>
+                <ul>
+                    {{#each poetry_2}}
+                        <li {{#unless this.poetryContent}}class='disabled'{{/unless}}><a href="/artworks/{{#if this.slug}}{{this.slug}}{{/if}}">{{this.title}}</a></li>
+                    {{/each}}
+                </ul>
+            </div>
+            <img src="/img/drach_zbir-min.png" alt="">
+        </div>
+        <div id="artworks_3">
+            <div class="">
+                <h1>Сценарії</h1>
+                <ul>
+                    {{#each films}}
+                        <li  {{#unless this.filmURL}}class='disabled'{{/unless}}><a href="/artworks/{{#if this.slug}}{{this.slug}}{{/if}}">{{this.title}}</a></li>
+                    {{/each}}
+                </ul>
+            </div>
+            <img src="/img/drach_lektsia-min.png" alt="">
+        </div>
+    </div>
+</div>

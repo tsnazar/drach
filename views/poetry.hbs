@@ -1,0 +1,26 @@
+<div id="poetry" class="side-padding bottom-padding">
+    <div class="breadcrumbs">
+        <a href="/">Головна</a>
+        <span>></span>
+        <a href="/artworks">Твори</a>
+        <span>></span>
+        <a href="/artworks/{{slug}}">{{title}}</a>
+    </div>
+    <div class="">
+        <h1>{{title}}</h1>
+        <div>{{{lookup pages (sub pagination.page)}}}</div>
+        {{#ifCond pages.length '>' 1}}
+            <ul class="pagination">
+                {{#paginate pagination type="previous"}}
+                    <li {{#if disabled}}class='disabled'{{/if}}><a href="?p={{n}}" id="prev"></a></li>
+                {{/paginate}}
+                {{#paginate pagination type="middle" limit="5"}}
+                    <li {{#if active}}class="active"{{/if}}><a href="?p={{n}}">{{n}}</a></li>
+                {{/paginate}}
+                {{#paginate pagination type="next"}}
+                    <li {{#if disabled}}class='disabled'{{/if}}><a href="?p={{n}}" id='next'></a></li>
+                {{/paginate}}
+            </ul>
+        {{/ifCond}}
+    </div>
+</div>

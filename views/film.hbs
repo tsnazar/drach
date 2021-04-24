@@ -1,0 +1,26 @@
+<div class="side-padding bottom-padding" id="film">
+    <div class="breadcrumbs">
+        <a href="/">Головна</a>
+        <span>></span>
+        <a href="/artworks">Твори</a>
+        <span>></span>
+        <a href="/artworks/{{slug}}">{{title}}</a>
+    </div>
+    <div class="">
+        <h1>{{film.title}}</h1>
+        <p>{{film.filmGenre}}</p>
+        <iframe id="videoEmbedded" src="https://www.youtube.com/embed/{{film.filmURL}}"></iframe>
+        <div class="content-block">
+            <h2>Опис</h2>
+            <p>{{film.filmDescription}}</p>
+        </div>
+        <div class="content-block">
+            <h2>Критика</h2>
+            {{#each film.critics}}
+                <blockquote>{{this.filmCritic}}
+                    <cite>{{this.filmCriticAuthor}}</cite>
+                </blockquote>
+            {{/each}}
+        </div>
+    </div>
+</div>
