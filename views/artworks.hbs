@@ -5,29 +5,20 @@
         <a href="/artworks">Твори</a>
     </div>
     <div class="side-padding">
-        <div id="artworks_1">
-            <div class="">
-                <h1>Поезії</h1>
-                <ul>
-                    {{#each poetry_1}}
-                        <li  {{#unless this.poetryContent}}class='disabled'{{/unless}}><a href="/artworks/{{#if this.slug}}{{this.slug}}{{/if}}">{{this.title}}</a></li>
-                    {{/each}}
-                </ul>
-            </div>
-            <img src="/img/drach_promova-min.png" alt="Іван Драч на трибуні">
-        </div>
-        <div id="artworks_2">
-            <div class="">
-                <h1>Поезії</h1>
-                <ul>
-                    {{#each poetry_2}}
-                        <li {{#unless this.poetryContent}}class='disabled'{{/unless}}><a href="/artworks/{{#if this.slug}}{{this.slug}}{{/if}}">{{this.title}}</a></li>
-                    {{/each}}
-                </ul>
-            </div>
-            <img src="/img/drach_zbir-min.png" alt="Іван Драч усміхнений">
-        </div>
-        <div id="artworks_3">
+        {{#each artworks}}
+            <div class="{{#if (isDivisor 2 (sum @index 1))}}right{{else}}left{{/if}} artwork" id="artworks_{{@index}}">
+                <div>
+                    <h1>Поезії</h1>
+                    <ul>
+                        {{#each this}}
+                            <li {{#unless this.poetryContent}}class='disabled'{{/unless}}><a href="/artworks/{{#if this.slug}}{{this.slug}}{{/if}}">{{this.title}}</a></li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <img src="/img/{{lookup ../photos @index}}" alt="">
+            </div>      
+        {{/each}}
+        <div class="artwork last" id="artworks_3">
             <div class="">
                 <h1>Сценарії</h1>
                 <ul>
@@ -36,7 +27,7 @@
                     {{/each}}
                 </ul>
             </div>
-            <img src="/img/drach_lektsia-min.png" alt="Іван Драч читає книжку">
+            <img src="/img/drach_lektsia-min.png" alt="">
         </div>
     </div>
 </div>

@@ -115,18 +115,23 @@ router.get('/artworks', function(req, res, next){
       res.send('Undefined');
     }
     else{
-      var poetry_1 = [] , poetry_2 = [], films = [];
+      var poetrys = [] , artworks={}, films = [];
       for(let i = 0; i<result.length; i++){
         result[i] = result[i].get({plain:true});
         if(result[i].type == 'film'){
           films.push(result[i]);
         } else {
-          poetry_1.push(result[i]);
+          poetrys.push(result[i]);
         }
       }
-      poetry_2 = poetry_1.slice(poetry_1.length/2, poetry_1.length);
-      poetry_1 = poetry_1.slice(0, poetry_1.length/2);
-      res.render('artworks', {title:'Твори', poetry_1: poetry_1, poetry_2:poetry_2, films: films});
+      
+      var iter = Math.ceil(poetrys.length/20);
+      for(let i = 0; i<iter; i++){
+        artworks['poetry_'+i] = poetrys.splice(0,20);
+      }
+
+      var photos = ['drach_promova-min.png', 'drach_zbir-min.png', 'drach_stoyit.png', 'drach_nezalezhinst.png'];
+      res.render('artworks', {title:'Твори', artworks:artworks, photos:photos, films: films});
     }
   }).catch((err)=>{console.log(err)});
 });

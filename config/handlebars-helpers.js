@@ -29,5 +29,11 @@ module.exports = {
             default:
                 return options.inverse(this);
         }
+    },
+    sum: function(){
+        return Array.prototype.slice.call(arguments, 0, -1).reduce((acc, num) => acc += num);
+    },
+    isDivisor: function(num1, num2){
+        return num1 !== 0 && num2 % num1 === 0;
     }
 };
