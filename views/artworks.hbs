@@ -7,7 +7,7 @@
     <div class="side-padding">
         {{#each artworks}}
             <div class="{{#if (isDivisor 2 (sum @index 1))}}right{{else}}left{{/if}} artwork" id="artworks_{{@index}}">
-                <div>
+                <div class="wrapper">
                     <h1>Поезії</h1>
                     <ul>
                         {{#each this}}
