@@ -130,7 +130,7 @@ router.get('/artworks', function(req, res, next){
         artworks['poetry_'+i] = poetrys.splice(0,20);
       }
 
-      var photos = ['drach_promova-min.png', 'drach_zbir-min.png', 'drach_stoyit.png', 'drach_nezalezhinst.png'];
+      var photos = ['drach_promova-min.png', 'drach_zbir-min.png', 'drach_stoyit.png', 'drach_nezalezhnist.png'];
       res.render('artworks', {title:'Твори', artworks:artworks, photos:photos, films: films});
     }
   }).catch((err)=>{console.log(err)});
