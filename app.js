@@ -21,6 +21,11 @@ app.use(logger('dev'));
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use(cookieParser());
+app.use(require('node-sass-middleware')({
+  src: path.join(__dirname, '/public/'),
+  dest: path.join(__dirname, '/public/'),
+  outputStyle: 'compressed'
+})); 
 app.use(express.static(path.join(__dirname, 'public')));
 
 const db = require("./models");
