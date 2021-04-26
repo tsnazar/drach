@@ -17,71 +17,6 @@ router.get('/art', function(req, res, next){
   res.render('art', {title: 'Творчість'});
 });
 
-router.get('/artworks/add', function(req, res, next){
-  res.render('artworks_add');
-});
-
-// delete after fiishing
-router.post('/artworks/add', function(req, res, next){
-  let tempCritic = [], critic = [], artwork = {};
-  
-  if(req.body.type=='---' || req.body.title.length < 1){
-    return res.render('artworks_add', {message: 'type must be specified'})
-  }
-
-  Object.keys(req.body).forEach(function(key){
-    if(key.includes('Critic') && req.body[key] != ''){
-      let obj = {};
-      obj[key] = req.body[key];
-      tempCritic.push(obj);
-    } else if(req.body[key] != '') {
-      let obj = {};
-      obj[key] = req.body[key];
-      Object.assign(artwork, obj);
-    }
-  });
-
-  while(tempCritic.length){
-    critic.push(Object.assign({}, ...tempCritic.splice(0,2).map(function(element){
-      Object.keys(element).forEach(function(key){
-        element[key.replace(/\d+/g,'')] = element[key];
-        delete element[key];
-      })
-      return element;
-    })));
-  }
-
-  db.Artwork.findOrCreate({
-    where: {
-      title: req.body.title,
-    },
-    defaults: artwork
-  }).then(function(result){
-    var artwork = result[0], created = result[1];
-    if(!created){
-      return res.render('artworks_add', {
-          message: 'Something is wrong',
-          messageClass: 'alert-danger',
-      });
-    } else if(artwork.type == 'film' && critic.length > 0){
-      critic.forEach(function(element){
-        element.ArtworkId = artwork.id;
-      });
-      db.Critic.bulkCreate(critic).then(()=>{
-        return db.Critic.findAll();
-      }).then(critics =>{
-        if(critics){
-          console.log("Critic added.");
-        }
-      }).catch((err)=>{console.log(err)});
-      return res.redirect('/artworks');
-    }
-    else {
-      return res.redirect('/artworks');
-    }
-  }).catch((err)=>{console.log(err)});
-});
-
 router.get('/artworks/:slug', function(req, res, next){
   db.Artwork.findOne({
     where:{
@@ -135,31 +70,5 @@ router.get('/artworks', function(req, res, next){
     }
   }).catch((err)=>{console.log(err)});
 });
-
-// delete after fiishing
-router.get('/artworks/:slug/delete', function(req, res, next){
-  db.Artwork.findOne({
-    where:{
-      slug: req.params.slug,
-    }
-  }).then(function(result){
-    result.destroy();
-    console.log('Deleted');
-    res.redirect('/artworks')
-  }).catch((err)=>{console.log(err)});
-})
-
-// delete after fiishing
-router.get('/critic/:id/delete', function(req, res, next){
-  db.Critic.findOne({
-    where:{
-      id: req.params.id,
-    }
-  }).then(function(result){
-    result.destroy();
-    console.log('Deleted');
-    res.redirect('/artworks')
-  }).catch((err)=>{console.log(err)});
-})
 
 module.exports = router;
