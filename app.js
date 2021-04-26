@@ -4,10 +4,20 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var exphbs = require('express-handlebars');
+var helmet = require('helmet');
 
 var indexRouter = require('./routes/index');
 
 var app = express();
+
+app.use(helmet({
+  contentSecurityPolicy:{
+    directives: {
+      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+      'script-src': ["'self'", "https://code.jquery.com/", "https://www.youtube.com/"]
+    }
+  }
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
