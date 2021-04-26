@@ -24,6 +24,9 @@ router.get('/artworks/:slug', function(req, res, next){
     },
     include: ['critics']
   }).then(function(result){
+    if(result.type == null){
+      res.send('Not Found', 404);
+    }
     if(result.type=='film'){
       res.render('film', {title: result.title, slug:result.slug, film:result.get({plain:true})});
     } else {
