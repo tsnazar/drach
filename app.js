@@ -14,7 +14,8 @@ app.use(helmet({
   contentSecurityPolicy:{
     directives: {
       ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-      'script-src': ["'self'", "https://code.jquery.com/", "https://www.youtube.com/"]
+      'script-src': ["'self'", "https://code.jquery.com/", "https://www.youtube.com/"],
+      'frame-src': ["'self'", "https://www.youtube.com/"]
     }
   }
 }));
