@@ -14,13 +14,15 @@
             <h2>Опис</h2>
             <p>{{film.filmDescription}}</p>
         </div>
-        <div class="content-block">
-            <h2>Критика</h2>
-            {{#each film.critics}}
-                <blockquote>{{this.filmCritic}}
-                    <cite>{{this.filmCriticAuthor}}</cite>
-                </blockquote>
-            {{/each}}
-        </div>
+        {{#if film.critics}}
+            <div class="content-block">
+                <h2>Критика</h2>
+                {{#each film.critics}}
+                    <blockquote>{{this.filmCritic}}
+                        <cite>{{this.filmCriticAuthor}}</cite>
+                    </blockquote>
+                {{/each}}
+            </div>
+        {{/if}}
     </div>
 </div>
