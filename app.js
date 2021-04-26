@@ -30,6 +30,10 @@ db.sequelize.sync().then(() => {
 
 app.use('/', indexRouter);
 
+app.get('*', function(req, res){
+  res.send('Not Found', 404);
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
