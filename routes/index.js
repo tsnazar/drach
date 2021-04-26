@@ -49,8 +49,8 @@ router.get('/artworks/:slug', function(req, res, next){
 
 router.get('/artworks', function(req, res, next){
   db.Artwork.findAll().then(function(result){
-    if(result==undefined){
-      res.send('Undefined');
+    if(!result){
+      res.send('Not Found', 404);
     }
     else{
       var poetrys = [] , artworks={}, films = [];
