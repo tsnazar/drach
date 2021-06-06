@@ -15,7 +15,10 @@
                         {{/each}}
                     </ul>
                 </div>
-                <img src="/img/{{lookup ../photos @index}}" alt="">
+                <div class="img-wrapper">
+                    <img src="/img/{{lookup ../photos @index}}" alt="">
+                    <label for="">Іван Драч</label>
+                </div>
             </div>      
         {{/each}}
         <div class="artwork last" id="films">
